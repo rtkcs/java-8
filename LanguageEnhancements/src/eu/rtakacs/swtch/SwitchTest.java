@@ -39,10 +39,13 @@ public class SwitchTest {
 		//		
 		System.out.println("-------switch 2");
 //		String[] ss = new String[] {"a", "b", null}; //java.lang.NullPointerException
-		String[] ss = new String[] {"a", "b", "c"};
+		String[] ss = new String[] {"a", "b", "c", "A", "B", "C"};
 		for(String s:ss) {
 			switch(s) {
 				case "a": System.out.println("a");
+					break;
+				case "A" : System.out.println("A");
+					break;
 //				case null : System.out.println("null"); //does not compile: case expressions must be constant expressions
 			}
 		}
@@ -50,12 +53,13 @@ public class SwitchTest {
 		//
 		//---SWITCH 3
 		//
+		System.out.println("-------switch 3");
 		int val = 1_000_000;
 		switch(val) {
-			case 1_000_000: System.out.println("1_000_000");
+			case 1000000: System.out.println("1_000_000");
 				break;
-			case 1000000: System.out.println("1_000_000");	//will not compile: Duplicate case
-				break;
+//			case 1000000: System.out.println("1_000_000");	//will not compile: Duplicate case
+//				break;
 		}
 		
 	}
