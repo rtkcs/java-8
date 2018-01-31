@@ -11,9 +11,9 @@ public class Device /*implements AutoCloseable*/{
 	}
 	
 	public static void main(String[] args){
-		try(Device d = new Device()){	//Unresolved compilation problem: 
+//		try(Device d = new Device()){	//Unresolved compilation problem: 
 										//The resource type Device does not implement java.lang.AutoCloseable
 			
-		}
+//		}
 	}
 }
