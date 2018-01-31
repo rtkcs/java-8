@@ -49,14 +49,18 @@ public class FilesTest {
 		
 		Helper.print("Files.createTemp");
 		Path pathTempDir = Files.createTempDirectory("prefix");
-		System.out.println("Files.createTempDirectory = " + pathTempDir);
 		pathTempDir.toFile().deleteOnExit();
-		Path pathTempFile = Files.createTempFile("tempFilePrefix", ".suffix");
-		System.out.println("Files.createTempFile = " + pathTempFile);
-		pathTempFile.toFile().deleteOnExit();
+		System.out.println("Files.createTempDirectory = " + pathTempDir);
 		
-		Path pathTempFile2 = Files.createTempFile(pathTempDir, "", ".temp");
-		System.out.println("Files.createTempFile(Path, prefix, suffix, FileAttribute<?>");
+		Path pathTempFile = Files.createTempFile("tempFilePrefix", ".suffix");
+		pathTempFile.toFile().deleteOnExit();
+		System.out.println("Files.createTempFile = " + pathTempFile);
+		
+		Path pathTempDir2 = Files.createTempDirectory(Paths.get("", "resources").toAbsolutePath(), "");
+		pathTempDir2.toFile().deleteOnExit();
+		Path pathTempFile2 = Files.createTempFile(pathTempDir2, "", ".temp");
+		pathTempFile2.toFile().deleteOnExit();
+		System.out.println("Files.createTempFile(Path, prefix, suffix, FileAttribute<?>) = " + pathTempFile2);
 		
 		
 //		System.out.println("Files. = " + Files.);
