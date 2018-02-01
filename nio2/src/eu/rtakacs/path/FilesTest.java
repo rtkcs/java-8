@@ -5,11 +5,15 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.Charset;
+import java.nio.file.FileVisitOption;
+import java.nio.file.FileVisitResult;
+import java.nio.file.FileVisitor;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributeView;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.PosixFilePermission;
@@ -24,7 +28,8 @@ public class FilesTest {
 	public static void main(String[] args) throws IOException {
 		
 		// Check, delete, copy, or move a file or directory by using the Files class 
-
+		Helper.print("Files simple functions");
+		
 		Path path = Paths.get("").toAbsolutePath();
 		System.out.println("Current working path = " + path);
 		System.out.println("Files.exists = " + Files.exists(path, LinkOption.NOFOLLOW_LINKS));
@@ -90,9 +95,26 @@ public class FilesTest {
 		System.out.println("BasicFileAttributes.lastModifiedTime = " + attributes.lastModifiedTime());
 		
 		
+		Helper.print("Files.walk(Path path, FileVisitOption... options)");
+		try(Stream<Path> streamPath = Files.walk(path, FileVisitOption.FOLLOW_LINKS)){
+			streamPath.forEach(p -> System.out.println(p));
+		}
+		
+		Helper.print("Files.walk(Path path,int maxDepth, FileVisitOption... options) ");
+		Stream<Path> streamPath2 = Files.walk(path, 2, FileVisitOption.FOLLOW_LINKS);
+		streamPath2.forEach(p -> System.out.println(p));
+		streamPath2.close();
+		
+
+		
+		
+		filesWalkFileTree(path);
+		
 		filesWrite1();
 		filesWrite2();
 		filesWrite3();
+		
+
 	}
 	
 	public static void filesWrite1() {
@@ -156,6 +178,42 @@ public class FilesTest {
 			
 		}catch(IOException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public static void filesWalkFileTree(Path path) {
+		Helper.print("Files.walkFileTree");
+		FileVisitor<Path> visitor = new SimpleFileVisitor<Path>() {
+			
+			@Override
+			public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException{
+				System.out.println("Visited file: 		" + file + " 		File type: " + Files.probeContentType(file));
+				return FileVisitResult.CONTINUE;
+			}
+			
+			@Override
+			public FileVisitResult visitFileFailed(Path file, IOException e) throws IOException{
+				System.out.println("Visited file failed:	" + file);
+				return FileVisitResult.CONTINUE;
+			}
+			
+			@Override
+			public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException{
+				System.out.println("Pre visited directory: 	" + dir);
+				return FileVisitResult.CONTINUE;
+			}
+			
+			@Override
+			public FileVisitResult postVisitDirectory(Path dir, IOException e) throws IOException{
+				System.out.println("Post visited directory: " + dir);
+				return FileVisitResult.CONTINUE;
+			}
+		};
+		
+		try {
+			Files.walkFileTree(path, visitor);
+		} catch (IOException e1) {
+			e1.printStackTrace();
 		}
 	}
 
