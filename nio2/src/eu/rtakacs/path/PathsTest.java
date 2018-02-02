@@ -1,8 +1,10 @@
 package eu.rtakacs.path;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.FileSystems;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -27,6 +29,9 @@ public class PathsTest {
 		
 //		URI uri2 = new URI("http://docs.oracle.com/javase/8/docs/api/index.html?java/nio/file/Paths.html");
 //		testPath(Paths.get(uri2), "URI Javadoc Paths");
+		
+		
+		examQuestions();
 		
 
 	}
@@ -72,6 +77,68 @@ public class PathsTest {
 		
 		System.out.println("path1.resolveSibling(path2) = " + path1.resolveSibling(path2));
 		System.out.println("path1.resolveSibling('DateTime') = " + path1.resolveSibling("DateTime"));
+		
+		
+	}
+	
+	public static void examQuestions() {
+
+		Helper.print("exam question 1");
+		Path p3 = Paths.get("c:\\data_app\\reports\\daily\\rt.txt");
+		System.out.println(p3);
+		System.out.println("p3.subpath(1, 2) = " + p3.subpath(1, 2));
+		System.out.println("p3.subpath(0, 2) = " + p3.subpath(0, 2));
+//		System.out.println("p3.subpath(0, 0) = " + p3.subpath(0, 0));//java.lang.IllegalArgumentException
+		
+		Helper.print("exam question 2");
+		Path p4 = Paths.get("c:\\Users\\.\\Mike\\Pictures\\..\\aboutMe.txt");
+		Path p5 = Paths.get("c:\\Users\\readme.txt");
+		System.out.println("p4 = " + p4);
+		System.out.println("p5 = " + p5);
+		System.out.println("p4.relativize(p5) = " + p4.relativize(p5));
+		System.out.println("p4.normalize() = " + p4.normalize());
+		System.out.println("p4.getRoot = " + p4.getRoot());
+		
+		Helper.print("exam question 3 - print roots of a file system");
+		Iterable<Path> roots = FileSystems.getDefault().getRootDirectories();
+		System.out.println("Iterable<Path> roots = FileSystems.getDefault().getRootDirectories()");
+		for(Path p : roots) {
+			System.out.println(p);
+		}
+		System.out.println("File[] rootFiles = File.listRoots();");
+		File[] rootFiles = File.listRoots();
+		for(File f : rootFiles) {
+			System.out.println(f);
+		}
+		
+		Helper.print("exam question 4");
+		Path p6 = Paths.get("\\Users\\Mike");
+		Path p7 = Paths.get("\\readme.txt");
+		System.out.println("p6 = " + p6);
+		System.out.println("p7 = " + p7);
+		System.out.println("p6.relativize(p7) = " + p6.relativize(p7));
+		System.out.println("p6.resolve(p7) = " + p6.resolve(p7));
+		System.out.println("p6.getRoot() = " + p6.getRoot());
+		
+		Helper.print("exam question 5");
+		Path p8 = Paths.get("Users\\Mike");
+		Path p9 = Paths.get("readme.txt");
+		System.out.println("p8 = " + p8);
+		System.out.println("p9 = " + p9);
+		System.out.println("p8.relativize(p9) = " + p8.relativize(p9));
+		
+		
+		Helper.print("exam question 6");
+		Path p10 = Paths.get("c:\\code\\java\\PathTest.java");
+		System.out.println("p10 = " + p10);
+		System.out.println("p10.getNameCount = " + p10.getNameCount());
+		System.out.println("p10.getRoot = " + p10.getRoot());
+		System.out.println("p10.getName(0) = " + p10.getName(0));
+		System.out.println("p10.getName(1) = " + p10.getName(1));
+		System.out.println("p10.getName(2) = " + p10.getName(2));
+		System.out.println("p10.startsWith(\"c:\\\") = " + p10.startsWith("c:\\"));
+		System.out.println("p10.startsWith(\"c:\\code\") = " + p10.startsWith("c:\\code"));
+		System.out.println("p10.endsWith(\"PathTest.java\") = " + p10.endsWith("PathTest.java"));
 		
 		
 	}
