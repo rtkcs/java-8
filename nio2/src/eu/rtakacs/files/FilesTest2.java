@@ -7,6 +7,8 @@ import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.nio.file.attribute.FileTime;
+import java.time.Instant;
 
 
 public class FilesTest2 {
@@ -15,13 +17,14 @@ public class FilesTest2 {
 		
 		Path resources = Paths.get("resources").toAbsolutePath();
 		
-		
+		//move
 		Path file1 = Files.createTempFile(resources, "file1", ".txt");
 		System.out.println("File1 created: " + file1.toAbsolutePath());
 		
 		Files.write(file1, "file1".getBytes());
 		Files.setAttribute(file1, "dos:hidden", true, LinkOption.NOFOLLOW_LINKS);
 		Files.setAttribute(file1, "dos:readonly", true);
+		Files.setLastModifiedTime(file1, FileTime.from(Instant.MIN));
 		
 		Path file2 = Files.createTempFile(resources, "file2", ".txt");
 		System.out.println("File2 created: " + file2.toAbsolutePath() );
@@ -36,6 +39,8 @@ public class FilesTest2 {
 		System.out.println( "file2.toFile().exists() = " + file2.toFile().exists() );
 		
 		file2.toFile().deleteOnExit();
+		
+		//copy attributes
 		
 	}
 
