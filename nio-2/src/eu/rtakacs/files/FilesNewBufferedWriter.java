@@ -15,6 +15,14 @@ public class FilesNewBufferedWriter {
 	public static void main(String[] args) throws IOException {
 		
 		Path path = Paths.get("resources\\bufferedWriter.txt").toAbsolutePath();
+
+		UserPrincipal principal = path.getFileSystem().getUserPrincipalLookupService().lookupPrincipalByName("administrator");
+		try{
+			Files.setAttribute(path, "dos:readonly", false);
+			Files.setOwner(path, principal);
+		} catch(IOException e){
+			e.printStackTrace();
+		}		
 		
 //		try(BufferedWriter bw = Files.newBufferedWriter(path, Charset.forName("UTF-8"), new OpenOption[]{StandardOpenOption.WRITE, StandardOpenOption.DSYNC})){
 //		try(BufferedWriter bw = Files.newBufferedWriter(path, Charset.forName("UTF-8"), new OpenOption[]{StandardOpenOption.APPEND, StandardOpenOption.SYNC})){
@@ -23,12 +31,7 @@ public class FilesNewBufferedWriter {
 			bw.write("written from buffered writer"+System.lineSeparator());
 		}
 		
-		UserPrincipal principal = path.getFileSystem().getUserPrincipalLookupService().lookupPrincipalByName("administrator");
-		try{
-			Files.setOwner(path, principal);
-		} catch(IOException e){
-			e.printStackTrace();
-		}
+
 		
 		System.out.println("done");
 	}
