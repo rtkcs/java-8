@@ -31,9 +31,22 @@ public class FilesNewBufferedWriter {
 			bw.write("written from buffered writer"+System.lineSeparator());
 		}
 		
-
-		
 		System.out.println("done");
+		
+		
+		//
+		//-- create new file, if file exists truncate existing
+		//
+		Path path2 =Paths.get("resources\\newFile.txt").toAbsolutePath();
+//		try(BufferedWriter bw = Files.newBufferedWriter(path2, Charset.forName("UTF-8"), new OpenOption[]{StandardOpenOption.CREATE})){		// will create always a new file
+//		try(BufferedWriter bw = Files.newBufferedWriter(path2, Charset.forName("UTF-8"), new OpenOption[]{StandardOpenOption.CREATE_NEW})){	// if file exists, will throw an java.nio.file.FileAlreadyExistsException
+//		try(BufferedWriter bw = Files.newBufferedWriter(path2, Charset.forName("UTF-8"), new OpenOption[]{StandardOpenOption.WRITE})){
+//		try(BufferedWriter bw = Files.newBufferedWriter(path2, Charset.forName("UTF-8"), new OpenOption[]{StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.CREATE_NEW})){ // if file exists, will throw an java.nio.file.FileAlreadyExistsException
+		try(BufferedWriter bw = Files.newBufferedWriter(path2, Charset.forName("UTF-8"), new OpenOption[]{StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.CREATE})){
+			
+			bw.write("only 1 line written"+System.lineSeparator());
+		}
+		System.out.println("done, create new, truncate existing " + path2);
 	}
 
 }
