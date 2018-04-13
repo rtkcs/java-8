@@ -15,11 +15,15 @@ public class FilesNewBufferedWriter {
 	public static void main(String[] args) throws IOException {
 		
 		Path path = Paths.get("resources\\bufferedWriter.txt").toAbsolutePath();
+		
+		if(!Files.exists(path)) {
+			Files.createFile(path);
+		}
 
 		UserPrincipal principal = path.getFileSystem().getUserPrincipalLookupService().lookupPrincipalByName("administrator");
 		try{
 			Files.setAttribute(path, "dos:readonly", false);
-			Files.setOwner(path, principal);
+//			Files.setOwner(path, principal); //does not work on windows
 		} catch(IOException e){
 			e.printStackTrace();
 		}		

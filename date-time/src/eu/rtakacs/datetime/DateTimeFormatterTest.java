@@ -28,6 +28,7 @@ public class DateTimeFormatterTest {
 		System.out.println("Default format of LocalDate   = " + dateTime);
 		System.out.println("Custom formatter d::MMM::uuuu = " + dateTime.format( DateTimeFormatter.ofPattern("d::MMM::uuuu")) );
 		System.out.println("Custom formatter d::MMM::uuuu HH::mm::ss = " + dateTime.format( DateTimeFormatter.ofPattern("d::MMM::uuuu HH::mm::ss")) );
+		System.out.println("Custom formatter uuuu-MM-dd HH:mm:ss = " + dateTime.format( DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm:ss")) );
 		System.out.println("Formatter BASIC_ISO_DATE      = " + dateTime.format( DateTimeFormatter.BASIC_ISO_DATE) );
 		System.out.println("Formatter ISO_DATE            = " + dateTime.format( DateTimeFormatter.ISO_DATE) );
 		System.out.println("Formatter ISO_DATE_TIME       = " + dateTime.format( DateTimeFormatter.ISO_DATE_TIME) );
