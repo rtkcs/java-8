@@ -141,5 +141,21 @@ public class PathsTest {
 		System.out.println("p10.endsWith(\"PathTest.java\") = " + p10.endsWith("PathTest.java"));
 		
 		
+		Helper.print("exam question 7");
+		Path p11Source = Paths.get("\\Users\\Mike");
+		Path p12Target = Paths.get("\\Users\\John");
+		Path p13 = Paths.get("\\Users\\Mike\\dirToCopy");
+		Path p14 = Paths.get("dirToCopy");
+		System.out.println("p11Source = " + p11Source);
+		System.out.println("p12Target = " + p12Target);
+		System.out.println("p13 = " + p13);
+		System.out.println(p11Source.relativize(p13));
+		System.out.println(p12Target.resolve( p11Source.relativize(p13)) );
+
+		System.out.println(p11Source.relativize(p14));
+		System.out.println(p12Target.resolve( p11Source.relativize(p14)) );
+		
+		
+		
 	}
 }
