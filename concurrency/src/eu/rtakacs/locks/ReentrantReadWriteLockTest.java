@@ -33,7 +33,7 @@ public class ReentrantReadWriteLockTest {
 
 class ReadWriteList<E> {
     private List<E> list = new ArrayList<>();
-    private ReadWriteLock rwLock = new ReentrantReadWriteLock();
+    private ReadWriteLock rwLock = new ReentrantReadWriteLock(false);
  
     public ReadWriteList(E... initialElements) {
         list.addAll(Arrays.asList(initialElements));
