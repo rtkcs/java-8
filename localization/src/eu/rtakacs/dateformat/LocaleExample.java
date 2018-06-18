@@ -38,6 +38,12 @@ public class LocaleExample {
 		Locale localeFormat = Locale.getDefault(Locale.Category.FORMAT);
 		printLocale("Category.DISPLAY", localeDisplay);
 		printLocale("Category.FORMAT", localeFormat);
+		
+		Locale localeFrFR = new Locale("fr", "FR");
+		printLocale("fr FR", localeFrFR);
+		
+		Locale localeFrCA = new Locale("fr", "CA");
+		printLocale("fr CA", localeFrCA);
 	}
 
 }
