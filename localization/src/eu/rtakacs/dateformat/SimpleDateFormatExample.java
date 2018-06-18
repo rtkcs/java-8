@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class SimpleDateExample {
+public class SimpleDateFormatExample {
 	
 	private static Date date = new Date();
 //	private static Locale locale = Locale.GERMAN;
@@ -23,8 +23,13 @@ public class SimpleDateExample {
 		sdf("zzz");
 		sdf("MM/yy");
 		sdf("dd-MM-yyyy HH:mm:ss:SSS");
-		sdf("'Week:'w wwww 'Day in year:'D 'Month:'MMMM 'Day name:'E EEEE 'Time zone:'z zzzz Z ZZZZ 'Era designator'G GGGG");
-		
+		sdf("'Week:' w wwww");
+		sdf("'Day in year:' D");
+		sdf("'Month:' MMMM");
+		sdf("'Day name:' E EEEE");
+		sdf("'Time zone:' z zzzz Z ZZZZ");
+		sdf("'Time zone:' X XX XXX");
+		sdf("'Era designator:' G GGGG");
 		
 		System.out.println();
 		System.out.println("--------- Examples from Java Doc");
