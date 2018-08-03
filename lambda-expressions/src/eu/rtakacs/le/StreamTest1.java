@@ -53,6 +53,19 @@ public class StreamTest1 {
 		Consumer<Double> df = x -> x=x+10;
 		dList.stream().forEach(df);
 		dList.forEach(d -> System.out.println(d));
+		
+		
+		//intermediate and terminal operations
+		System.out.println("---intermediate and terminal operations");
+		List<Integer> list = Arrays.asList(1, 2, 3, 4);
+		list.stream().filter(i -> {
+			System.out.println(i+" ");
+			return i>2;
+		});
+		list.stream().filter(i -> {
+			System.out.println(i+" ");
+			return i>2;
+		}).findAny();
 	}
 
 }
