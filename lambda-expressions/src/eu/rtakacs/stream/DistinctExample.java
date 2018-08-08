@@ -22,7 +22,10 @@ public class DistinctExample {
 				.flatMap(str -> Stream.of(str.split("[ ,.?]")))
 				.filter(s -> s.length()>0)
 				.distinct();
+		System.out.println(strm);
 		strm.forEach(c -> System.out.println(c));
+		
+		
 	}
 
 }
