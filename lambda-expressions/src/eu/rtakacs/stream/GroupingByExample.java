@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.function.ToDoubleFunction;
 import java.util.stream.Collectors;
+
+import eu.rtakacs.Helper;
 
 class Entity{
 	private String name;
@@ -42,6 +45,13 @@ class Entity{
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
+	@Override
+	public String toString() {
+		return System.lineSeparator() + "Entity [name=" + name + ", category=" + category + ", price=" + price + "]";
+	}
+	
+	
 }
 
 public class GroupingByExample {
@@ -81,6 +91,19 @@ public class GroupingByExample {
 		///--- 3 Collectors.toSet
 		entities.stream().map(Entity::getCategory).collect(Collectors.toSet());
 		System.out.println(categorySet);
+		
+		
+		///
+		///--- stream.collect, Collectors.groupingBy
+		///
+		Helper.print("grouping to Map<String category, List<Entity>>");
+		Map<String, List<Entity>> entitiesMap =  entities.stream().collect(Collectors.groupingBy( Entity::getCategory ));
+		System.out.println(entitiesMap);
+		
+
+		Helper.print("grouping to Map<Double price, List<String name>>");
+		Map<Double, List<String>> entitiesMap2 = entities.stream().collect(Collectors.groupingBy(Entity::getPrice, Collectors.mapping(Entity::getName, Collectors.toList())));
+		System.out.println(entitiesMap2);
 	}
 
 }
