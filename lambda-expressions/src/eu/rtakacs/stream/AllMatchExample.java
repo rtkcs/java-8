@@ -12,8 +12,7 @@ public class AllMatchExample {
 				str -> {
 					System.out.println(str);
 					return str.equals("python");
-				}
-				);
+		});
 		System.out.println(flag);
 
 	}
