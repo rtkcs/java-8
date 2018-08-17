@@ -42,5 +42,19 @@ public class ForEachExample {
 		System.out.println(s);
 		
 		
+		///
+		///--- change object values
+		///
+		System.out.println();
+		List<Entity> entities = Arrays.asList(
+				new Entity("Windows", "OperatingSystem", 3.0),
+				new Entity("Linux", "OperatingSystem", 1.0),
+				new Entity("Unix", "OperatingSystem", 5.0),
+				new Entity("CPU", "Hardware", 5.0),
+				new Entity("GPU", "Hardware", 3.0)
+				);
+		entities.stream().filter(e0 -> e0.getName().equalsIgnoreCase("windows")).forEach(e1 -> e1.setPrice( 50 ));
+		entities.stream().forEach(ee -> System.out.println(ee));
+		
 	}
 }
