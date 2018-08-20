@@ -50,8 +50,6 @@ class Entity{
 	public String toString() {
 		return System.lineSeparator() + "Entity [name=" + name + ", category=" + category + ", price=" + price + "]";
 	}
-	
-	
 }
 
 public class GroupingByExample {
@@ -87,10 +85,11 @@ public class GroupingByExample {
 		
 		///--- 2 
 		entities.stream().map(Entity::getCategory).forEach(categorySet::add);
+		System.out.println(categorySet);
 		
 		///--- 3 Collectors.toSet
-		entities.stream().map(Entity::getCategory).collect(Collectors.toSet());
-		System.out.println(categorySet);
+		Set<String> categorySet2 = entities.stream().map(Entity::getCategory).collect(Collectors.toSet());
+		System.out.println(categorySet2);
 		
 		
 		///
@@ -104,6 +103,11 @@ public class GroupingByExample {
 		Helper.print("grouping to Map<Double price, List<String name>>");
 		Map<Double, List<String>> entitiesMap2 = entities.stream().collect(Collectors.groupingBy(Entity::getPrice, Collectors.mapping(Entity::getName, Collectors.toList())));
 		System.out.println(entitiesMap2);
+		
+		
+		Helper.print("grouping by categoty, by price");
+		Map<String, Map<Double, List<Entity>>> entitiesMap3 = entities.stream().collect(Collectors.groupingBy(Entity::getCategory, Collectors.groupingBy(Entity::getPrice)));
+		System.out.println(entitiesMap3);
 	}
 
 }

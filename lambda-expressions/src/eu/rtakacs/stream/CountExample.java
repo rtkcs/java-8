@@ -17,7 +17,7 @@ public class CountExample {
 		
 		Predicate<Integer> predicateLt10 = i -> i<10;
 		long countLt10 = primeStream.filter(predicateLt10).count();
-		System.out.println(countLt10);
+		System.out.println(countLt10); 
 		
 		Predicate<Integer> predicateGt10 = i -> i>10;
 		//long countGt10 = primeStream.filter(testGt10).count();//java.lang.IllegalStateException: stream has already been operated upon or closed
@@ -34,6 +34,14 @@ public class CountExample {
 		
 		Map<Boolean, Integer> summMap = primes.stream().collect(Collectors.partitioningBy(predicateLt10, Collectors.summingInt( i -> i)));
 		System.out.println(summMap);
+		
+		///
+		///
+		///
+		System.out.println("----Collectors.partitioningBy");
+		Stream<Integer> strm1 = Stream.of(2,3,4,5,6,7,8,9,10);
+		Stream<Integer> strm2 = strm1.collect(Collectors.partitioningBy(i -> {return i>5 && i<8;})).get(true).stream();
+		strm2.forEach(System.out::println);
 
 	}
 }
