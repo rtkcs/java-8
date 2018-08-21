@@ -1,10 +1,13 @@
 package eu.rtakacs.stream;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+
+import eu.rtakacs.Helper;
 
 public class IntStreamExample {
 
@@ -36,6 +39,14 @@ public class IntStreamExample {
 		System.out.println(mInteger.get(3));
 		System.out.println(mInteger.get(5));
 		
+		
+		///
+		///---Stream.mapToInt()
+		///
+		Helper.print("Stream.mapToInt()");
+		List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+		double dSum = list.stream().mapToInt(i->i).sum();
+		System.out.println(dSum);
 		
 	}
 

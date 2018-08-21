@@ -56,5 +56,16 @@ public class ForEachExample {
 		entities.stream().filter(e0 -> e0.getName().equalsIgnoreCase("windows")).forEach(e1 -> e1.setPrice( 50 ));
 		entities.stream().forEach(ee -> System.out.println(ee));
 		
+		
+		///
+		///--- final or effectively final variable
+		///
+		int sum = 0;
+		List<Integer> list = Arrays.asList(0, 1, 2, 3, 4, 5);
+		//Local variable sum defined in an enclosing scope must be final or effectively final
+		//list.stream().forEach(i -> sum=sum+i); 
+		
+		long l = 1;
+		System.out.println(l);
 	}
 }
