@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class CompletableFutureTest {
 
@@ -63,8 +64,10 @@ public class CompletableFutureTest {
 	public double calculatePrice(String product) {
 		delay();
 //		throw new RuntimeException("Product not available");
-		Random random = new Random();
-		return random.nextDouble() * product.charAt(0) + product.charAt(1); 
+		return ThreadLocalRandom.current().nextDouble() * product.charAt(0) + product.charAt(1); 
+//		Random random = new Random();
+//		return random.nextDouble() * product.charAt(0) + product.charAt(1);
+		
 	}
 	
 	public static void delay() {

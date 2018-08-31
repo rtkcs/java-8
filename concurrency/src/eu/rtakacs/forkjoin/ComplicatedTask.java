@@ -7,6 +7,10 @@ import java.util.concurrent.RecursiveTask;
 
 public class ComplicatedTask extends RecursiveTask<Integer>{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8397758696482806857L;
 	int[] ia;
 	int from;
 	int to;
@@ -30,8 +34,8 @@ public class ComplicatedTask extends RecursiveTask<Integer>{
 			ComplicatedTask newtask2 = new ComplicatedTask(ia, mid+1, to);
 			
 			newtask1.fork();
-			int y = newtask1.join();
 			int x = newtask2.compute();
+			int y = newtask1.join();
 			return x+y;
 		}
 	}
@@ -44,7 +48,7 @@ public class ComplicatedTask extends RecursiveTask<Integer>{
 		int[] arr = new int[] {1,2,3,4,5,6,7};
 		int result = 0;
 		
-		ComplicatedTask ct = new ComplicatedTask(arr,0, arr.length-1);
+		ComplicatedTask ct = new ComplicatedTask(arr, 0, arr.length-1);
 		ForkJoinPool fjp = ForkJoinPool.commonPool();
 		
 		result = fjp.invoke(ct);

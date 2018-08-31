@@ -19,6 +19,7 @@ public class DateTimeTest {
 		System.out.println("Current Date = " + today);
 		
 		LocalDate firstDay2018 = LocalDate.of(2019, Month.JANUARY, 1);
+		firstDay2018 = LocalDate.of(2019, 1, 1);
 		System.out.println("Specifig date = " + firstDay2018);
 		
 		LocalDate todayKolkata = LocalDate.now(ZoneId.of("Asia/Kolkata"));

@@ -24,7 +24,7 @@ public class CopyOnWriteArrayListExample {
 		service.execute(r);
 		
 		int newSize = 0;
-		for(int i =0;i<100000;i++){
+		for(int i =0; i<1_000_000; i++){
 			if(size!=list.size()){
 				newSize = list.size();
 				break;

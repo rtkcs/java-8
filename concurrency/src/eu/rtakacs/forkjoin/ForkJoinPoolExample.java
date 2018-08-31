@@ -33,7 +33,7 @@ public class ForkJoinPoolExample {
 		
 		
 		System.out.println("ActiveThreadCount = " + pool.getActiveThreadCount());
-		System.out.println("Parallelis = " + pool.getParallelism());
+		System.out.println("Parallelism = " + pool.getParallelism());
 		System.out.println("PoolSize = " + pool.getPoolSize());
 		System.out.println("QueuedSubmissionCount = " + pool.getQueuedSubmissionCount());
 		System.out.println("QueuedTaskCount = " + pool.getQueuedTaskCount());
