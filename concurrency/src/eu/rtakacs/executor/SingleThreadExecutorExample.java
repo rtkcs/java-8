@@ -8,7 +8,7 @@ import java.util.concurrent.Future;
 
 class ExampleCallable implements Callable<String>{
 	public String call() throws Exception{
-		Thread.sleep(500);
+		Thread.sleep(5000);
 		return "ExampleCallable Done";
 	}
 }
@@ -18,12 +18,13 @@ public class SingleThreadExecutorExample {
 	public static void main(String[] args) {
 		ExecutorService es = Executors.newSingleThreadExecutor();
 		Future<String> future = es.submit(new ExampleCallable());
-		es.shutdownNow();
+//		es.shutdownNow();
 		
 		try {
 			System.out.println(future.get());
 		} catch (InterruptedException | ExecutionException e) {
 			e.printStackTrace();
 		}
+		es.shutdownNow();
 	}
 }
