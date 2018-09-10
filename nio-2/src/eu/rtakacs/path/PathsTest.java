@@ -152,10 +152,12 @@ public class PathsTest {
 		System.out.println(p11Source.relativize(p13));
 		System.out.println(p12Target.resolve( p11Source.relativize(p13)) );
 
-		System.out.println(p11Source.relativize(p14));
-		System.out.println(p12Target.resolve( p11Source.relativize(p14)) );
+//		System.out.println(p11Source.relativize(p14));
+//		System.out.println(p12Target.resolve( p11Source.relativize(p14)) );
 		
-		
+		Helper.print("exam question 8");
+		Path p15 = Paths.get("c:\\..\\temp\\test.jpg");
+		System.out.println(p15.normalize().toUri());
 		
 	}
 }
