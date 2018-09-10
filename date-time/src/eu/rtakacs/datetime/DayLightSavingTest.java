@@ -11,8 +11,10 @@ import java.time.ZonedDateTime;
 public class DayLightSavingTest {
 
 	public static void main(String[] args) {
-			
-		//change of summer time to winter time
+		
+		///
+		/// --- change of summer time to winter time
+		///
 		LocalDateTime ldtSummer = LocalDateTime.of(2017, 10, 28, 20, 00);
 		ZonedDateTime zdtSummer = ZonedDateTime.of(ldtSummer, ZoneId.systemDefault());
 		
@@ -45,8 +47,9 @@ public class DayLightSavingTest {
 		System.out.println("zdtSummer.isEqual(dayAfterSummer1)  " + zdtSummer.isEqual(dayAfterSummer1) + "; zdtSummer = " + zdtSummer + ", dayAfterSummer1 = " + dayAfterSummer1);
 		
 		
-		
-		//change of winter time to summer time
+		///
+		/// --- change of winter time to summer time
+		///
 		LocalDateTime ldtWinter = LocalDateTime.of(2018, 3, 24, 20, 00);
 		ZonedDateTime zdtWinter = ZonedDateTime.of(ldtWinter, ZoneId.systemDefault());
 		
