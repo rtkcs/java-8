@@ -24,16 +24,15 @@ public class ResourceBudleLoadingExample {
 		
 		System.out.println("---- Messages.properties will be never loaded, because Messages.java list resource bundle has priority");
 		System.out.println();
-
+		
+		loadResourceBundle(new Locale.Builder().setLanguageTag("de").setRegion("DE").build());
 		loadResourceBundle(new Locale("de", "DE"));
+		loadResourceBundle(new Locale("DE", "de"));
 		loadResourceBundle(new Locale("de"));
 		loadResourceBundle(Locale.GERMAN);
 		loadResourceBundle(Locale.GERMANY);
 		loadResourceBundle(Locale.ROOT);
 		loadResourceBundle(Locale.US);
-		
-		
-		
 	}
 
 }
